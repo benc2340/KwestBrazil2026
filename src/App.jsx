@@ -1,16 +1,17 @@
 import { useEffect, useState } from 'react'
 import PasscodeGate from './components/PasscodeGate'
 import Layout from './components/Layout'
+import HomeView from './components/HomeView'
 import ItineraryView from './components/ItineraryView'
-import MapView from './components/MapView'
 import ChatView from './components/ChatView'
-import DirectoryView from './components/DirectoryView'
-import CheckinView from './components/CheckinView'
+import CrewView from './components/CrewView'
+
+import InfoView from './components/InfoView'
 import { supabase } from './supabaseClient'
 
 export default function App() {
   const [session, setSession] = useState(null)
-  const [tab, setTab] = useState('itinerary')
+  const [tab, setTab] = useState('home')
 
   useEffect(() => {
     const saved = localStorage.getItem('kwest_session')
@@ -22,7 +23,6 @@ export default function App() {
   }, [])
 
   async function registerMember(s) {
-    // Upsert member into directory — name is unique key
     await supabase.from('trip_members').upsert(
       { name: s.name, is_leader: s.isLeader },
       { onConflict: 'name', ignoreDuplicates: true }
@@ -38,11 +38,12 @@ export default function App() {
 
   return (
     <Layout tab={tab} setTab={setTab} session={session}>
-      {tab === 'itinerary' && <ItineraryView session={session} />}
-      {tab === 'map' && <MapView session={session} />}
-      {tab === 'directory' && <DirectoryView session={session} />}
-      {tab === 'checkin' && <CheckinView session={session} />}
-      {tab === 'chat' && <ChatView session={session} />}
+      {tab === 'home'     && <HomeView session={session} onNavigate={setTab} />}
+      {tab === 'plan'     && <ItineraryView session={session} />}
+      {tab === 'chat'     && <ChatView session={session} />}
+      {tab === 'crew'     && <CrewView session={session} />}
+      {tab === 'info'     && <InfoView />}
     </Layout>
   )
 }
+
