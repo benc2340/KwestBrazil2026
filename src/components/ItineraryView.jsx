@@ -33,7 +33,7 @@ const DAYS = [
       { time: '8:20 AM', title: 'Arrive in Rio de Janeiro', detail: 'GIG — Galeão International Airport', photo: null },
       { time: '9:30 AM', title: 'Commute & Check-in', detail: 'Windsor Leme Hotel, Copacabana', photo: null },
       { time: '11:00 AM', title: 'Lunch & Selarón Steps', detail: 'Colorful mosaic staircase in the Lapa neighborhood — a Rio icon', photo: 'https://images.pexels.com/photos/18006362/pexels-photo-18006362.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop' },
-      { time: '2:00 PM', title: 'Sugarloaf Mountain Tour', detail: 'Cable car ride to the summit with panoramic views of Rio', photo: 'https://images.pexels.com/photos/13765421/pexels-photo-13765421.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop' },
+      { time: '2:00 PM', title: 'Sugarloaf Mountain Tour', detail: 'Cable car ride to the summit with panoramic views of Rio', photo: 'https://images.pexels.com/photos/8530451/pexels-photo-8530451.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop' },
       { time: '5:30 PM', title: 'Dinner at Classico Beach Club', detail: 'Waterfront dinner to start the trip right', photo: 'https://images.pexels.com/photos/1581384/pexels-photo-1581384.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop' },
       { time: '8:30 PM', title: 'Explore Rio Bars', detail: 'Night out with your new KWESTee besties!', photo: null },
     ],
@@ -136,6 +136,7 @@ export default function ItineraryView({ session }) {
   const [editingNote, setEditingNote] = useState(null)
   const [noteText, setNoteText] = useState('')
   const [saving, setSaving] = useState(false)
+  const [lightboxActivity, setLightboxActivity] = useState(null)
 
   useEffect(() => { loadNotes() }, [])
 
@@ -170,6 +171,22 @@ export default function ItineraryView({ session }) {
 
   return (
     <div className="h-full flex flex-col">
+      {/* Lightbox */}
+      {lightboxActivity && (
+        <div
+          className="fixed inset-0 z-50 bg-ink/90 flex flex-col items-center justify-center"
+          onClick={() => setLightboxActivity(null)}
+        >
+          <button className="absolute top-5 right-5 text-sand text-3xl font-light">×</button>
+          <p className="text-sand font-semibold mb-3 px-6 text-center">{lightboxActivity.title}</p>
+          <img
+            src={lightboxActivity.photo.replace('w=800&h=500', 'w=2400')}
+            alt={lightboxActivity.title}
+            className="max-w-full max-h-[80vh] object-contain rounded-xl"
+            onClick={e => e.stopPropagation()}
+          />
+        </div>
+      )}
       {/* Day tabs */}
       <div className="flex gap-2 overflow-x-auto pb-3 pt-1 -mx-1 px-1 shrink-0">
         {DAYS.map(d => (
@@ -205,6 +222,7 @@ export default function ItineraryView({ session }) {
             onDeleteNote={deleteNote}
             onChangeNote={setNoteText}
             onCancelNote={() => setEditingNote(null)}
+            onOpenPhoto={setLightboxActivity}
           />
         )}
       </div>
@@ -228,7 +246,7 @@ function OverviewTab() {
 
 // ─── Day Tab ──────────────────────────────────────────────────────────────────
 
-function DayTab({ day, notes, session, editingNote, noteText, saving, onStartEdit, onSaveNote, onDeleteNote, onChangeNote, onCancelNote }) {
+function DayTab({ day, notes, session, editingNote, noteText, saving, onStartEdit, onSaveNote, onDeleteNote, onChangeNote, onCancelNote, onOpenPhoto }) {
   if (!day) return null
   return (
     <div>
@@ -261,61 +279,72 @@ function DayTab({ day, notes, session, editingNote, noteText, saving, onStartEdi
                 {/* Card */}
                 <div className="flex-1 pb-1">
                   <div className="bg-white rounded-2xl overflow-hidden shadow-sm">
-                    {activity.photo && (
-                      <img
-                        src={activity.photo}
-                        alt={activity.title}
-                        className="w-full h-36 object-cover"
-                        onError={e => { e.target.style.display = 'none' }}
-                      />
-                    )}
-                    <div className="p-3">
-                      <p className="font-semibold text-ink text-sm">{activity.title}</p>
-                      {activity.detail && <p className="text-ink/50 text-xs mt-0.5">{activity.detail}</p>}
-
-                      {/* Leader note */}
-                      {note && !isEditing && (
-                        <div className="mt-2 bg-bloom/15 rounded-xl px-3 py-2 flex justify-between items-start gap-2">
-                          <p className="text-xs text-ink/70 flex-1">📌 {note}</p>
-                          {session.isLeader && (
-                            <div className="flex gap-2 shrink-0">
-                              <button onClick={() => onStartEdit(key, note)} className="text-[10px] text-dusk/60">Edit</button>
-                              <button onClick={() => onDeleteNote(key)} className="text-[10px] text-clay/70">Remove</button>
-                            </div>
-                          )}
-                        </div>
-                      )}
-
-                      {/* Leader edit */}
-                      {session.isLeader && isEditing && (
-                        <div className="mt-2">
-                          <textarea
-                            value={noteText}
-                            onChange={e => onChangeNote(e.target.value)}
-                            placeholder="Add a leader note for this activity…"
-                            className="w-full text-xs border border-ink/15 rounded-xl px-3 py-2 resize-none"
-                            rows={2}
-                            autoFocus
-                          />
-                          <div className="flex gap-2 mt-1">
-                            <button onClick={onCancelNote} className="text-xs text-ink/50">Cancel</button>
-                            <button onClick={() => onSaveNote(key)} disabled={saving} className="text-xs text-clay font-medium">
-                              {saving ? 'Saving…' : 'Save note'}
-                            </button>
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Add note button (leader only, no existing note, not editing) */}
-                      {session.isLeader && !note && !isEditing && (
+                    <div className="p-3 flex gap-3 items-start">
+                      <div className="flex-1">
+                        <p className="font-semibold text-ink text-sm">{activity.title}</p>
+                        {activity.detail && <p className="text-ink/50 text-xs mt-0.5">{activity.detail}</p>}
+                      </div>
+                      {activity.photo && (
                         <button
-                          onClick={() => onStartEdit(key, '')}
-                          className="mt-2 text-[10px] text-dusk/40 font-medium"
+                          onClick={() => onOpenPhoto(activity)}
+                          className="shrink-0 w-16 h-16 rounded-xl overflow-hidden border border-ink/10 relative"
                         >
-                          + Add leader note
+                          <img
+                            src={activity.photo.replace('w=800&h=500', 'w=200&h=200')}
+                            alt={activity.title}
+                            className="w-full h-full object-cover"
+                            onError={e => { e.target.parentElement.style.display = 'none' }}
+                          />
+                          <div className="absolute inset-0 bg-ink/10 flex items-center justify-center">
+                            <span className="text-white text-lg">🔍</span>
+                          </div>
                         </button>
                       )}
                     </div>
+
+                    {(note || session.isLeader) && (
+                      <div className="px-3 pb-3">
+                        {/* Leader note */}
+                        {note && !isEditing && (
+                          <div className="bg-bloom/15 rounded-xl px-3 py-2 flex justify-between items-start gap-2">
+                            <p className="text-xs text-ink/70 flex-1">📌 {note}</p>
+                            {session.isLeader && (
+                              <div className="flex gap-2 shrink-0">
+                                <button onClick={() => onStartEdit(key, note)} className="text-[10px] text-dusk/60">Edit</button>
+                                <button onClick={() => onDeleteNote(key)} className="text-[10px] text-clay/70">Remove</button>
+                              </div>
+                            )}
+                          </div>
+                        )}
+
+                        {/* Leader edit */}
+                        {session.isLeader && isEditing && (
+                          <div>
+                            <textarea
+                              value={noteText}
+                              onChange={e => onChangeNote(e.target.value)}
+                              placeholder="Add a leader note for this activity…"
+                              className="w-full text-xs border border-ink/15 rounded-xl px-3 py-2 resize-none"
+                              rows={2}
+                              autoFocus
+                            />
+                            <div className="flex gap-2 mt-1">
+                              <button onClick={onCancelNote} className="text-xs text-ink/50">Cancel</button>
+                              <button onClick={() => onSaveNote(key)} disabled={saving} className="text-xs text-clay font-medium">
+                                {saving ? 'Saving…' : 'Save note'}
+                              </button>
+                            </div>
+                          </div>
+                        )}
+
+                        {/* Add note button */}
+                        {session.isLeader && !note && !isEditing && (
+                          <button onClick={() => onStartEdit(key, '')} className="text-[10px] text-dusk/40 font-medium">
+                            + Add leader note
+                          </button>
+                        )}
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -326,3 +355,4 @@ function DayTab({ day, notes, session, editingNote, noteText, saving, onStartEdi
     </div>
   )
 }
+
