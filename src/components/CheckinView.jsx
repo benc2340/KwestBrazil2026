@@ -69,6 +69,12 @@ export default function CheckinView({ session }) {
     loadResponses()
   }
 
+  async function deleteSession(id) {
+    if (!confirm('Delete this check-in?')) return
+    await supabase.from('checkin_sessions').delete().eq('id', id)
+    load()
+  }
+
   if (loading) return <div className="h-full flex items-center justify-center text-ink/40">Loading…</div>
 
   const checkedIn = responses.map(r => r.member_name)
@@ -170,8 +176,13 @@ export default function CheckinView({ session }) {
           <div className="space-y-2">
             {sessions.filter(s => !s.active).map(s => (
               <div key={s.id} className="bg-white/60 rounded-2xl px-4 py-3 flex justify-between items-center">
-                <p className="text-ink/60 text-sm">"{s.title}"</p>
-                <p className="text-ink/30 text-xs">{new Date(s.created_at).toLocaleDateString()}</p>
+                <div>
+                  <p className="text-ink/60 text-sm">"{s.title}"</p>
+                  <p className="text-ink/30 text-xs">{new Date(s.created_at).toLocaleDateString()}</p>
+                </div>
+                {session.isLeader && (
+                  <button onClick={() => deleteSession(s.id)} className="text-ink/20 hover:text-clay text-xl leading-none px-1">×</button>
+                )}
               </div>
             ))}
           </div>
