@@ -76,7 +76,6 @@ export default function DirectoryView({ session }) {
           ref={fileInputRef}
           type="file"
           accept="image/*"
-          capture="user"
           onChange={handlePhotoUpload}
           className="hidden"
         />
@@ -163,3 +162,4 @@ function MemberCard({ member, isMe, canKick, onKick }) {
     </div>
   )
 }
+
