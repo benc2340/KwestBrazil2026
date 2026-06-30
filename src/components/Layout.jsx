@@ -1,4 +1,9 @@
 export default function Layout({ tab, setTab, session, children }) {
+  function signOut() {
+    if (!confirm('Sign out?')) return
+    localStorage.removeItem('kwest_session')
+    window.location.reload()
+  }
   const tabs = [
     { id: 'itinerary', label: 'Schedule', icon: ItineraryIcon },
     { id: 'map', label: 'Map', icon: MapIcon },
@@ -18,9 +23,13 @@ export default function Layout({ tab, setTab, session, children }) {
             Brazil 2026{session.isLeader && <span className="text-clay text-xs align-middle ml-1">· Leader</span>}
           </h1>
         </div>
-        <div className="w-9 h-9 rounded-full bg-canopy text-sand flex items-center justify-center font-semibold text-sm">
+        <button
+          onClick={signOut}
+          className="w-9 h-9 rounded-full bg-canopy text-sand flex items-center justify-center font-semibold text-sm"
+          title="Sign out"
+        >
           {session.name.slice(0, 1).toUpperCase()}
-        </div>
+        </button>
       </header>
 
       <main className="flex-1 overflow-hidden px-4">{children}</main>
