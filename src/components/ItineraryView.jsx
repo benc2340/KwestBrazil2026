@@ -31,10 +31,10 @@ const DAYS = [
     city: '🌆 Rio de Janeiro',
     activities: [
       { time: '8:20 AM', title: 'Arrive in Rio de Janeiro', detail: 'GIG — Galeão International Airport', photo: null },
-      { time: '9:30 AM', title: 'Commute & Check-in', detail: 'Windsor Leme Hotel, Copacabana', photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Copacabana_seen_from_above.jpg/1280px-Copacabana_seen_from_above.jpg' },
-      { time: '11:00 AM', title: 'Lunch & Selarón Steps', detail: 'Colorful mosaic staircase in the Lapa neighborhood — a Rio icon', photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Escadaria_Selar%C3%B3n_-_Rio_de_Janeiro%2C_Brazil.jpg/1280px-Escadaria_Selar%C3%B3n_-_Rio_de_Janeiro%2C_Brazil.jpg' },
-      { time: '2:00 PM', title: 'Sugarloaf Mountain Tour', detail: 'Cable car ride to the summit with panoramic views of Rio', photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Sugarloaf_Mountain_in_Rio_Brazil_-_with_cloud_layer.JPG/1280px-Sugarloaf_Mountain_in_Rio_Brazil_-_with_cloud_layer.JPG' },
-      { time: '5:30 PM', title: 'Dinner at Classico Beach Club', detail: 'Waterfront dinner to start the trip right', photo: null },
+      { time: '9:30 AM', title: 'Commute & Check-in', detail: 'Windsor Leme Hotel, Copacabana', photo: null },
+      { time: '11:00 AM', title: 'Lunch & Selarón Steps', detail: 'Colorful mosaic staircase in the Lapa neighborhood — a Rio icon', photo: 'https://images.pexels.com/photos/18006362/pexels-photo-18006362.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop' },
+      { time: '2:00 PM', title: 'Sugarloaf Mountain Tour', detail: 'Cable car ride to the summit with panoramic views of Rio', photo: 'https://images.pexels.com/photos/13765421/pexels-photo-13765421.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop' },
+      { time: '5:30 PM', title: 'Dinner at Classico Beach Club', detail: 'Waterfront dinner to start the trip right', photo: 'https://images.pexels.com/photos/1581384/pexels-photo-1581384.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop' },
       { time: '8:30 PM', title: 'Explore Rio Bars', detail: 'Night out with your new KWESTee besties!', photo: null },
     ],
   },
@@ -46,12 +46,12 @@ const DAYS = [
     city: '⚽ Rio de Janeiro',
     activities: [
       { time: '8:00–9:00 AM', title: 'Breakfast at Hotel', detail: null, photo: null },
-      { time: '9:00 AM–1:00 PM', title: 'Christ the Redeemer Tour', detail: 'One of the Seven Wonders of the World — the iconic statue atop Corcovado Mountain', photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Cristo_Redentor_-_Rio_de_Janeiro%2C_Brasil.jpg/800px-Cristo_Redentor_-_Rio_de_Janeiro%2C_Brasil.jpg' },
+      { time: '9:00 AM–1:00 PM', title: 'Christ the Redeemer Tour', detail: 'One of the Seven Wonders of the World — the iconic statue atop Corcovado Mountain', photo: 'https://images.pexels.com/photos/3607628/pexels-photo-3607628.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop' },
       { time: '1:00 PM', title: 'Small Group Lunches (SGDs)', detail: 'Lunch with your small group', photo: null },
       { time: '3:00–5:00 PM', title: 'Free Time', detail: null, photo: null },
       { time: '5:00–6:00 PM', title: 'Quick Dinner', detail: null, photo: null },
       { time: '6:00 PM', title: 'Board Bus for Soccer Game', detail: 'Heading to Estádio Nilton Santos', photo: null },
-      { time: '7:00 PM', title: 'Botafogo vs. Atlético', detail: 'Estádio Nilton Santos, Rio de Janeiro — Brazilian football at its finest!', photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Est%C3%A1dio_Ol%C3%ADmpico_Nilton_Santos_-_panoramio.jpg/1280px-Est%C3%A1dio_Ol%C3%ADmpico_Nilton_Santos_-_panoramio.jpg' },
+      { time: '7:00 PM', title: 'Botafogo vs. Atlético', detail: 'Estádio Nilton Santos, Rio de Janeiro — Brazilian football at its finest!', photo: 'https://images.pexels.com/photos/46798/the-ball-stadion-football-the-pitch-46798.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop' },
       { time: '10:00 PM', title: 'Night Out on the Town', detail: 'Keep the energy going in Rio!', photo: null },
     ],
   },
@@ -63,11 +63,11 @@ const DAYS = [
     city: '🏖️ Rio de Janeiro',
     activities: [
       { time: '8:00–10:00 AM', title: 'Breakfast at Hotel', detail: null, photo: null },
-      { time: '10:00 AM–12:00 PM', title: 'Beach Time', detail: 'Sun, sand, and the iconic shores of Copacabana', photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/24701-nature-natural-beauty-natural.jpg/1280px-24701-nature-natural-beauty-natural.jpg' },
+      { time: '10:00 AM–12:00 PM', title: 'Beach Time', detail: 'Sun, sand, and the iconic shores of Copacabana', photo: 'https://images.pexels.com/photos/19110695/pexels-photo-19110695.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop' },
       { time: '12:00–2:00 PM', title: 'Small Group Lunches (SGDs)', detail: null, photo: null },
       { time: '2:00–5:00 PM', title: 'Beach Time', detail: 'More time in the sun', photo: null },
       { time: '6:30 PM', title: 'Pick-up for Big Reveal', detail: 'Get ready for something special', photo: null },
-      { time: '7:00 PM', title: '🎉 Big Reveal', detail: 'Território Aprazível, Rio de Janeiro — surprise awaits!', photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Rio_de_Janeiro_2012_04_09_6082_%2810778028674%29.jpg/1280px-Rio_de_Janeiro_2012_04_09_6082_%2810778028674%29.jpg' },
+      { time: '7:00 PM', title: '🎉 Big Reveal', detail: 'Território Aprazível, Rio de Janeiro — surprise awaits!', photo: 'https://images.pexels.com/photos/941861/pexels-photo-941861.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop' },
       { time: '10:30 PM', title: 'Keep the Party Going', detail: 'Local bars and clubs', photo: null },
     ],
   },
@@ -80,9 +80,9 @@ const DAYS = [
     activities: [
       { time: '8:00–9:30 AM', title: 'Breakfast at Hotel', detail: null, photo: null },
       { time: '9:30 AM', title: 'Depart for Búzios', detail: 'Scenic bus ride — nap, hydrate, and take in the views', photo: null },
-      { time: '1:00 PM', title: 'Arrive & Check-in', detail: 'Rio Búzios Beach Hotel', photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Buzios_-_RJ.jpg/1280px-Buzios_-_RJ.jpg' },
+      { time: '1:00 PM', title: 'Arrive & Check-in', detail: 'Rio Búzios Beach Hotel', photo: 'https://images.pexels.com/photos/1450353/pexels-photo-1450353.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop' },
       { time: '1:00–3:00 PM', title: 'Free Time + Lunch Nearby', detail: null, photo: null },
-      { time: '3:00–5:00 PM', title: 'Caipirinha Class on the Beach', detail: 'Learn to make Brazil\'s national cocktail with your feet in the sand', photo: null },
+      { time: '3:00–5:00 PM', title: 'Caipirinha Class on the Beach', detail: 'Learn to make Brazil\'s national cocktail with your feet in the sand', photo: 'https://images.pexels.com/photos/5947019/pexels-photo-5947019.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop' },
       { time: '5:00–10:00 PM', title: 'Dinner & Dance at Beach Club', detail: 'Sunset dinner followed by dancing', photo: null },
       { time: '10:00 PM', title: 'Samba the Night Away', detail: 'Búzios bars — bom noite!', photo: null },
     ],
@@ -95,7 +95,7 @@ const DAYS = [
     city: '⛵ Búzios',
     activities: [
       { time: '8:00–9:00 AM', title: 'Breakfast at Hotel', detail: null, photo: null },
-      { time: '9:00 AM–3:00 PM', title: 'Schooner Boat Tour', detail: 'Beach-hopping along the stunning Búzios coastline', photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Armacao_de_Buzios_RJ_Brasil.jpg/1280px-Armacao_de_Buzios_RJ_Brasil.jpg' },
+      { time: '9:00 AM–3:00 PM', title: 'Schooner Boat Tour', detail: 'Beach-hopping along the stunning Búzios coastline', photo: 'https://images.pexels.com/photos/273886/pexels-photo-273886.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop' },
       { time: '3:00–6:00 PM', title: 'Free Time at the Hotel', detail: null, photo: null },
       { time: '6:00–8:30 PM', title: 'Farewell Dinner', detail: 'Our last night in Búzios — make it count', photo: null },
       { time: '9:00 PM', title: 'Last Night Out in Brazil!', detail: 'Go out with a bang', photo: null },
@@ -123,7 +123,7 @@ const DAYS = [
     activities: [
       { time: '6:35 AM', title: 'Arrive in Miami', detail: null, photo: null },
       { time: '9:09 AM', title: 'Depart Miami', detail: 'Flight AA1431 to Chicago', photo: null },
-      { time: '11:36 AM', title: 'Arrive at O\'Hare', detail: 'Welcome home — with lifelong friends and memories 🇧🇷', photo: null },
+      { time: '11:36 AM', title: 'Arrive at O\'Hare', detail: 'Welcome home — with lifelong friends and memories!', photo: null },
     ],
   },
 ]
@@ -326,4 +326,3 @@ function DayTab({ day, notes, session, editingNote, noteText, saving, onStartEdi
     </div>
   )
 }
-
