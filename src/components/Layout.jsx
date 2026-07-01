@@ -8,7 +8,7 @@ export default function Layout({ tab, setTab, session, children }) {
   const tabs = [
     { id: 'home', label: 'Home', icon: HomeIcon },
     { id: 'plan', label: 'Plan', icon: PlanIcon },
-    { id: 'chat', label: 'Chat', icon: ChatIcon },
+    { id: 'chat', label: 'Social', icon: ChatIcon },
     { id: 'crew', label: 'Crew', icon: CrewIcon },
     { id: 'info', label: 'Info', icon: InfoIcon },
   ]
