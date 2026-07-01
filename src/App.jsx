@@ -3,7 +3,7 @@ import PasscodeGate from './components/PasscodeGate'
 import Layout from './components/Layout'
 import HomeView from './components/HomeView'
 import ItineraryView from './components/ItineraryView'
-import ChatView from './components/ChatView'
+import SocialView from './components/SocialView'
 import CrewView from './components/CrewView'
 
 import InfoView from './components/InfoView'
@@ -17,6 +17,11 @@ export default function App() {
     const saved = localStorage.getItem('kwest_session')
     if (saved) {
       const s = JSON.parse(saved)
+      // If passcode has changed since they last logged in, force re-login
+      if (s.passcode !== import.meta.env.VITE_TRIP_PASSCODE) {
+        localStorage.removeItem('kwest_session')
+        return
+      }
       setSession(s)
       registerMember(s)
     }
@@ -40,10 +45,9 @@ export default function App() {
     <Layout tab={tab} setTab={setTab} session={session}>
       {tab === 'home'     && <HomeView session={session} onNavigate={setTab} />}
       {tab === 'plan'     && <ItineraryView session={session} />}
-      {tab === 'chat'     && <ChatView session={session} />}
+      {tab === 'chat'     && <SocialView session={session} />}
       {tab === 'crew'     && <CrewView session={session} />}
       {tab === 'info'     && <InfoView />}
     </Layout>
   )
 }
-
