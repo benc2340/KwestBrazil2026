@@ -89,7 +89,19 @@ export default function InfoView() {
                     />
                   </div>
                 </div>
-                <div className="text-center text-ink/30 text-xl">⇅</div>
+                <div className="text-center">
+                  <button
+                    onClick={() => {
+                      const tmpUsd = usd
+                      const tmpBrl = brl
+                      setUsd(tmpBrl ? (parseFloat(tmpBrl) / BRL_RATE).toFixed(2) : '')
+                      setBrl(tmpUsd ? (parseFloat(tmpUsd) * BRL_RATE).toFixed(2) : '')
+                    }}
+                    className="w-10 h-10 rounded-full bg-sand border border-ink/15 text-ink/50 text-xl flex items-center justify-center mx-auto hover:bg-ink/5 transition-colors"
+                  >
+                    ⇅
+                  </button>
+                </div>
                 <div>
                   <label className="text-xs text-ink/50 font-medium mb-1 block">Brazilian Reais (BRL)</label>
                   <div className="flex items-center gap-2 border border-ink/15 rounded-xl px-4 py-3">
