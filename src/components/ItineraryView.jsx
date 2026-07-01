@@ -22,7 +22,7 @@ const DAYS = [
       { time: '9:30 AM', title: 'Commute & Check-in', detail: 'Windsor Leme Hotel, Copacabana', photo: null },
       { time: '11:00 AM', title: 'Lunch & Selarón Steps', detail: 'Colorful mosaic staircase in the Lapa neighborhood — a Rio icon', photo: null },
       { time: '2:00 PM', title: 'Sugarloaf Mountain Tour', detail: 'Cable car ride to the summit with panoramic views of the city and bay', photo: null },
-      { time: '5:30 PM', title: 'Dinner at Classico Beach Club', detail: 'Waterfront dinner in Urca with stunning views of Sugarloaf', photo: null },
+      { time: '5:30 PM', title: 'Dinner at Clássico Beach Club', detail: 'On Morro da Urca — the first cable car stop on Sugarloaf. Dinner with panoramic views of Rio, accessed via the bondinho (cable car).', photo: null },
       { time: '8:30 PM', title: 'Explore Rio Bars', detail: 'Night out with your new KWESTee besties!', photo: null },
     ],
   },
@@ -301,3 +301,4 @@ function DayTab({ day, notes, session, editingNote, noteText, saving, onStartEdi
     </div>
   )
 }
+
