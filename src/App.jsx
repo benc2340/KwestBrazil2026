@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import PasscodeGate from './components/PasscodeGate'
 import Layout from './components/Layout'
 import HomeView from './components/HomeView'
-import ItineraryView from './components/ItineraryView'
+import PlanView from './components/PlanView'
 import SocialView from './components/SocialView'
 import CrewView from './components/CrewView'
 
@@ -44,11 +44,12 @@ export default function App() {
   return (
     <Layout tab={tab} setTab={setTab} session={session}>
       {tab === 'home'     && <HomeView session={session} onNavigate={setTab} />}
-      {tab === 'plan'     && <ItineraryView session={session} />}
+      {tab === 'plan'     && <PlanView session={session} />}
       {tab === 'chat'     && <SocialView session={session} />}
       {tab === 'crew'     && <CrewView session={session} />}
       {tab === 'info'     && <InfoView />}
     </Layout>
   )
 }
+
 
