@@ -19,7 +19,7 @@ export default function Layout({ tab, setTab, session, children }) {
         <div>
           <p className="text-bloom font-body font-semibold tracking-widest text-[10px] uppercase">Kellogg KWEST</p>
           <h1 className="font-display text-xl text-dusk font-semibold leading-tight">
-            Brazil 2026{session.isLeader && <span className="text-clay text-xs align-middle ml-1">· Leader</span>}
+            Brazil 2026{session.isAdmin ? <span className="text-bloom text-xs align-middle ml-1">· Admin</span> : session.isLeader && <span className="text-clay text-xs align-middle ml-1">· Leader</span>}
           </h1>
         </div>
         <button onClick={signOut} title="Sign out"
