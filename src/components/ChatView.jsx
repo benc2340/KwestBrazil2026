@@ -123,6 +123,9 @@ export default function ChatView({ session }) {
                         {m.content}
                       </div>
                     )}
+                    <p className="text-[10px] text-ink/30 mt-0.5 px-1">
+                      {new Date(m.created_at).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}
+                    </p>
                   </div>
                 </div>
               )
@@ -153,4 +156,3 @@ export default function ChatView({ session }) {
     </div>
   )
 }
-
