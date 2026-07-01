@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 const TRIP_CODE = import.meta.env.VITE_TRIP_PASSCODE
 const LEADER_CODE = import.meta.env.VITE_LEADER_PASSCODE
+const ADMIN_CODE = import.meta.env.VITE_ADMIN_PASSCODE
 
 export default function PasscodeGate({ onUnlock }) {
   const [code, setCode] = useState('')
@@ -20,8 +21,9 @@ export default function PasscodeGate({ onUnlock }) {
       setError("That code doesn't match. Double check and try again.")
       return
     }
-    const isLeader = showLeaderField && leaderCode.trim() === LEADER_CODE && LEADER_CODE
-    const session = { name: name.trim(), isLeader: Boolean(isLeader), passcode: code.trim() }
+    const isAdmin = showLeaderField && leaderCode.trim() === ADMIN_CODE && ADMIN_CODE
+    const isLeader = isAdmin || (showLeaderField && leaderCode.trim() === LEADER_CODE && LEADER_CODE)
+    const session = { name: name.trim(), isLeader: Boolean(isLeader), isAdmin: Boolean(isAdmin), passcode: code.trim() }
     localStorage.setItem('kwest_session', JSON.stringify(session))
     onUnlock(session)
   }
