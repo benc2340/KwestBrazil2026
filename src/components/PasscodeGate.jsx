@@ -21,7 +21,7 @@ export default function PasscodeGate({ onUnlock }) {
       return
     }
     const isLeader = showLeaderField && leaderCode.trim() === LEADER_CODE && LEADER_CODE
-    const session = { name: name.trim(), isLeader: Boolean(isLeader) }
+    const session = { name: name.trim(), isLeader: Boolean(isLeader), passcode: code.trim() }
     localStorage.setItem('kwest_session', JSON.stringify(session))
     onUnlock(session)
   }
