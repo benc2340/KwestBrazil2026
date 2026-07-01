@@ -66,6 +66,7 @@ export default function InfoView() {
       <div className="flex gap-2 pb-3 pt-1 shrink-0">
         {[
           { id: 'currency', label: '💱 Currency' },
+          { id: 'hotels', label: '🏨 Hotels' },
           { id: 'leaders', label: '📞 Leaders' },
           { id: 'emergency', label: '🚨 Emergency' },
         ].map(s => (
@@ -120,6 +121,43 @@ export default function InfoView() {
                 <li>• Visa/Mastercard are widely accepted in Rio & Búzios</li>
               </ul>
             </div>
+          </div>
+        )}
+
+        {section === 'hotels' && (
+          <div className="space-y-3">
+            <p className="text-ink/40 text-xs font-semibold tracking-widest uppercase mb-3">Where We're Staying</p>
+            {[
+              {
+                name: 'Windsor Leme Hotel',
+                nights: 'Aug 23–26 (Rio)',
+                address: 'Av. Atlântica, 1020 - Leme, Rio de Janeiro - RJ, 22010-060',
+                note: 'Right on Copacabana / Leme beach, steps from the water.',
+                maps: 'https://maps.google.com/?q=Windsor+Leme+Hotel+Rio+de+Janeiro',
+              },
+              {
+                name: 'Rio Búzios Beach Hotel',
+                nights: 'Aug 26–28 (Búzios)',
+                address: 'Rua das Pedras - Centro, Armação dos Búzios - RJ, 28950-000',
+                note: 'Heart of Búzios, walking distance to Rua das Pedras nightlife.',
+                maps: 'https://maps.google.com/?q=Rio+Buzios+Beach+Hotel',
+              },
+            ].map(h => (
+              <div key={h.name} className="bg-white rounded-2xl p-4 shadow-sm">
+                <div className="flex items-start justify-between gap-2 mb-2">
+                  <div>
+                    <p className="font-semibold text-ink">{h.name}</p>
+                    <p className="text-clay text-xs font-medium mt-0.5">{h.nights}</p>
+                  </div>
+                  <a href={h.maps} target="_blank" rel="noopener noreferrer"
+                    className="shrink-0 w-10 h-10 rounded-full bg-dusk/10 text-dusk flex items-center justify-center text-lg">
+                    🗺️
+                  </a>
+                </div>
+                <p className="text-ink/50 text-xs mb-1.5">{h.address}</p>
+                <p className="text-ink/60 text-xs italic">{h.note}</p>
+              </div>
+            ))}
           </div>
         )}
 
