@@ -38,6 +38,13 @@ export default function DirectoryView({ session }) {
     load()
   }
 
+  async function toggleLeader(member) {
+    const action = member.is_leader ? 'Remove leader status from' : 'Make'
+    if (!confirm(`${action} "${member.name}" ${member.is_leader ? '' : 'a leader'}?`)) return
+    await supabase.from('trip_members').update({ is_leader: !member.is_leader }).eq('name', member.name)
+    load()
+  }
+
   async function kickMember(name) {
     if (!confirm(`Remove "${name}" from the directory?`)) return
     await supabase.from('trip_members').delete().eq('name', name)
@@ -98,6 +105,8 @@ export default function DirectoryView({ session }) {
                 isMe={m.name === session.name}
                 canKick={session.isLeader && m.name !== session.name}
                 onKick={kickMember}
+                isAdmin={session.isAdmin}
+                onToggleLeader={toggleLeader}
               />
             ))}
           </div>
@@ -116,6 +125,8 @@ export default function DirectoryView({ session }) {
               isMe={m.name === session.name}
               canKick={session.isLeader}
               onKick={kickMember}
+              isAdmin={session.isAdmin}
+              onToggleLeader={toggleLeader}
             />
           ))}
           {kwestees.length === 0 && (
@@ -140,7 +151,7 @@ function Avatar({ member, size = 'md' }) {
   )
 }
 
-function MemberCard({ member, isMe, canKick, onKick }) {
+function MemberCard({ member, isMe, canKick, onKick, isAdmin, onToggleLeader }) {
   return (
     <div className="bg-white rounded-2xl px-4 py-3 flex items-center gap-3 shadow-sm">
       <Avatar member={member} />
@@ -151,15 +162,25 @@ function MemberCard({ member, isMe, canKick, onKick }) {
         </p>
         {member.is_leader && <p className="text-clay text-[11px]">Leader</p>}
       </div>
-      {canKick && (
-        <button
-          onClick={() => onKick(member.name)}
-          className="text-ink/20 hover:text-clay text-xl leading-none shrink-0 px-1"
-        >
-          ×
-        </button>
-      )}
+      <div className="flex items-center gap-1 shrink-0">
+        {isAdmin && !isMe && (
+          <button
+            onClick={() => onToggleLeader(member)}
+            title={member.is_leader ? 'Remove leader' : 'Make leader'}
+            className="text-base px-1 opacity-40 hover:opacity-100 transition-opacity"
+          >
+            {member.is_leader ? '👑' : '⭐'}
+          </button>
+        )}
+        {canKick && (
+          <button
+            onClick={() => onKick(member.name)}
+            className="text-ink/20 hover:text-clay text-xl leading-none px-1"
+          >
+            ×
+          </button>
+        )}
+      </div>
     </div>
   )
 }
-
