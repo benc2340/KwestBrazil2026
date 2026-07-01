@@ -19,7 +19,7 @@ const DAYS = [
       { id: 2, title: 'Windsor Leme Hotel', time: '9:30 AM', lat: -22.9711, lng: -43.1731, hotel: true },
       { id: 3, title: 'Selarón Steps', time: '11:00 AM', lat: -22.9146, lng: -43.1796 },
       { id: 4, title: 'Sugarloaf Mountain', time: '2:00 PM', lat: -22.9489, lng: -43.1576 },
-      { id: 5, title: 'Classico Beach Club', time: '5:30 PM', lat: -22.9556, lng: -43.1642 },
+      { id: 5, title: 'Clássico Beach Club (Morro da Urca)', time: '5:30 PM', lat: -22.9517, lng: -43.1643 },
     ],
   },
   {
@@ -178,4 +178,3 @@ export default function MapView() {
     </div>
   )
 }
-
