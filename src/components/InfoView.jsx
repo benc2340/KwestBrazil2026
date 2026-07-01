@@ -40,6 +40,7 @@ const BRL_RATE = 5.72 // approximate — verify before trip
 export default function InfoView() {
   const [usd, setUsd] = useState('')
   const [brl, setBrl] = useState('')
+  const [flipped, setFlipped] = useState(false)
   const [section, setSection] = useState('currency')
 
   function handleUsd(val) {
@@ -50,6 +51,14 @@ export default function InfoView() {
     setBrl(val)
     setUsd(val ? (parseFloat(val) / BRL_RATE).toFixed(2) : '')
   }
+  function swap() { setFlipped(f => !f) }
+
+  const topField = flipped
+    ? { label: 'Brazilian Reais (BRL)', symbol: 'R$', value: brl, onChange: handleBrl }
+    : { label: 'US Dollars (USD)', symbol: '$', value: usd, onChange: handleUsd }
+  const bottomField = flipped
+    ? { label: 'US Dollars (USD)', symbol: '$', value: usd, onChange: handleUsd }
+    : { label: 'Brazilian Reais (BRL)', symbol: 'R$', value: brl, onChange: handleBrl }
 
   return (
     <div className="h-full flex flex-col">
@@ -77,42 +86,25 @@ export default function InfoView() {
               <p className="font-semibold text-ink mb-4">USD ↔ BRL Converter</p>
               <div className="space-y-3">
                 <div>
-                  <label className="text-xs text-ink/50 font-medium mb-1 block">US Dollars (USD)</label>
+                  <label className="text-xs text-ink/50 font-medium mb-1 block">{topField.label}</label>
                   <div className="flex items-center gap-2 border border-ink/15 rounded-xl px-4 py-3">
-                    <span className="text-ink/40 font-medium">$</span>
-                    <input
-                      type="number"
-                      value={usd}
-                      onChange={e => handleUsd(e.target.value)}
-                      placeholder="0.00"
-                      className="flex-1 focus:outline-none text-ink font-semibold text-lg"
-                    />
+                    <span className="text-ink/40 font-medium">{topField.symbol}</span>
+                    <input type="number" value={topField.value} onChange={e => topField.onChange(e.target.value)}
+                      placeholder="0.00" className="flex-1 focus:outline-none text-ink font-semibold text-lg" />
                   </div>
                 </div>
                 <div className="text-center">
-                  <button
-                    onClick={() => {
-                      const tmpUsd = usd
-                      const tmpBrl = brl
-                      setUsd(tmpBrl ? (parseFloat(tmpBrl) / BRL_RATE).toFixed(2) : '')
-                      setBrl(tmpUsd ? (parseFloat(tmpUsd) * BRL_RATE).toFixed(2) : '')
-                    }}
-                    className="w-10 h-10 rounded-full bg-sand border border-ink/15 text-ink/50 text-xl flex items-center justify-center mx-auto hover:bg-ink/5 transition-colors"
-                  >
+                  <button onClick={swap}
+                    className="w-10 h-10 rounded-full bg-sand border border-ink/15 text-ink/50 text-xl flex items-center justify-center mx-auto hover:bg-ink/5 transition-colors">
                     ⇅
                   </button>
                 </div>
                 <div>
-                  <label className="text-xs text-ink/50 font-medium mb-1 block">Brazilian Reais (BRL)</label>
+                  <label className="text-xs text-ink/50 font-medium mb-1 block">{bottomField.label}</label>
                   <div className="flex items-center gap-2 border border-ink/15 rounded-xl px-4 py-3">
-                    <span className="text-ink/40 font-medium">R$</span>
-                    <input
-                      type="number"
-                      value={brl}
-                      onChange={e => handleBrl(e.target.value)}
-                      placeholder="0.00"
-                      className="flex-1 focus:outline-none text-ink font-semibold text-lg"
-                    />
+                    <span className="text-ink/40 font-medium">{bottomField.symbol}</span>
+                    <input type="number" value={bottomField.value} onChange={e => bottomField.onChange(e.target.value)}
+                      placeholder="0.00" className="flex-1 focus:outline-none text-ink font-semibold text-lg" />
                   </div>
                 </div>
               </div>
