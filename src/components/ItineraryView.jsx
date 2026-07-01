@@ -33,8 +33,8 @@ const DAYS = [
       { time: '8:00–9:00 AM', title: 'Breakfast at Hotel', detail: null, photo: null },
       { time: '9:00 AM–1:00 PM', title: 'Christ the Redeemer Tour', detail: 'One of the Seven Wonders of the World — the iconic statue atop Corcovado Mountain with panoramic views of Rio', photo: null },
       { time: '1:00 PM', title: 'Small Group Lunches (SGDs)', detail: 'Lunch with your small group', photo: null },
-      { time: '3:00–5:00 PM', title: 'Free Time', detail: null, photo: null },
-      { time: '5:00–6:00 PM', title: 'Quick Dinner', detail: null, photo: null },
+      { time: '3:00 PM', title: 'Free Time', detail: null, photo: null },
+      { time: '5:00 PM', title: 'Quick Dinner', detail: null, photo: null },
       { time: '6:00 PM', title: 'Board Bus for Soccer Game', detail: 'Heading to Estádio Nilton Santos', photo: null },
       { time: '7:00 PM', title: 'Botafogo vs. Atlético', detail: 'Estádio Nilton Santos — Brazilian football at its finest!', photo: null },
       { time: '10:00 PM', title: 'Night Out on the Town', detail: 'Keep the energy going in Rio!', photo: null },
@@ -45,9 +45,9 @@ const DAYS = [
     date: 'Tuesday, August 25', city: '🏖️ Rio de Janeiro',
     activities: [
       { time: '8:00–10:00 AM', title: 'Breakfast at Hotel', detail: null, photo: null },
-      { time: '10:00 AM–12:00 PM', title: 'Beach Time', detail: 'Sun, sand, and the iconic shores of Copacabana', photo: null },
-      { time: '12:00–2:00 PM', title: 'Small Group Lunches (SGDs)', detail: null, photo: null },
-      { time: '2:00–5:00 PM', title: 'Beach Time', detail: 'More time in the sun', photo: null },
+      { time: '10:00 AM', title: 'Beach Time', detail: 'Sun, sand, and the iconic shores of Copacabana', photo: null },
+      { time: '12:00 PM', title: 'Small Group Lunches (SGDs)', detail: null, photo: null },
+      { time: '2:00 PM', title: 'Beach Time', detail: 'More time in the sun', photo: null },
       { time: '6:30 PM', title: 'Pick-up for Big Reveal', detail: 'Get ready for something special…', photo: null },
       { time: '7:00 PM', title: '🎉 Big Reveal', detail: 'Território Aprazível, Rio de Janeiro — dinner with a view you won\'t forget', photo: null },
       { time: '10:30 PM', title: 'Keep the Party Going', detail: 'Local bars and clubs', photo: null },
@@ -60,9 +60,9 @@ const DAYS = [
       { time: '8:00–9:30 AM', title: 'Breakfast at Hotel', detail: null, photo: null },
       { time: '9:30 AM', title: 'Depart for Búzios', detail: 'Scenic bus ride — nap, hydrate, and take in the views', photo: null },
       { time: '1:00 PM', title: 'Arrive & Check-in', detail: 'Rio Búzios Beach Hotel', photo: null },
-      { time: '1:00–3:00 PM', title: 'Free Time + Lunch Nearby', detail: null, photo: null },
+      { time: '1:00 PM', title: 'Free Time + Lunch Nearby', detail: null, photo: null },
       { time: '3:00–5:00 PM', title: 'Caipirinha Class on the Beach', detail: 'Learn to make Brazil\'s national cocktail with your feet in the sand', photo: null },
-      { time: '5:00–10:00 PM', title: 'Dinner & Dance at Beach Club', detail: 'Sunset dinner followed by dancing', photo: null },
+      { time: '5:00 PM', title: 'Dinner & Dance at Beach Club', detail: 'Sunset dinner followed by dancing', photo: null },
       { time: '10:00 PM', title: 'Samba the Night Away', detail: 'Búzios bars — bom noite!', photo: null },
     ],
   },
@@ -72,8 +72,8 @@ const DAYS = [
     activities: [
       { time: '8:00–9:00 AM', title: 'Breakfast at Hotel', detail: null, photo: null },
       { time: '9:00 AM–3:00 PM', title: 'Schooner Boat Tour', detail: 'Beach-hopping along the stunning Búzios coastline', photo: null },
-      { time: '3:00–6:00 PM', title: 'Free Time at the Hotel', detail: null, photo: null },
-      { time: '6:00–8:30 PM', title: 'Farewell Dinner', detail: 'Our last night in Búzios — make it count', photo: null },
+      { time: '3:00 PM', title: 'Free Time at the Hotel', detail: null, photo: null },
+      { time: '6:00 PM', title: 'Farewell Dinner', detail: 'Our last night in Búzios — make it count', photo: null },
       { time: '9:00 PM', title: 'Last Night Out in Brazil!', detail: 'Go out with a bang', photo: null },
     ],
   },
@@ -82,8 +82,8 @@ const DAYS = [
     date: 'Friday, August 28', city: '🚌 Búzios → Rio',
     activities: [
       { time: '9:00–10:00 AM', title: 'Breakfast at Hotel', detail: null, photo: null },
-      { time: '10:00 AM–3:00 PM', title: 'Free Time in Búzios', detail: 'Last chance to soak it all in', photo: null },
-      { time: '3:00–7:00 PM', title: 'Travel Back to Rio', detail: null, photo: null },
+      { time: '10:00 AM', title: 'Free Time in Búzios', detail: 'Last chance to soak it all in', photo: null },
+      { time: '3:00 PM', title: 'Travel Back to Rio', detail: null, photo: null },
       { time: '11:00 PM', title: 'Depart Rio', detail: 'Flight AA904 — sleep well, you\'ve earned it', photo: null },
     ],
   },
@@ -301,5 +301,3 @@ function DayTab({ day, notes, session, editingNote, noteText, saving, onStartEdi
     </div>
   )
 }
-
-
